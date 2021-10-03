@@ -1,0 +1,68 @@
+﻿@model  NewsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Model.Id</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title_AR)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title_AR)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description_AR)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description_AR)
+        </dd>
+    </dl>
+    <h2>News Images</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+            </tr>
+        </thead>
+        <tbody id="tbl">
+            @foreach (var path in Model.Images)
+            {
+                <tr>
+                    <td>
+                        <img asp-append-version="true" src="@path" alt="@Model.Title" width="400" height="400" />
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |
+    <a asp-action="Index">Back to List</a>
+</div>

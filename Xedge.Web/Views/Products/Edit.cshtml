@@ -1,0 +1,137 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Edit Product @Model.Name</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input asp-for="Id" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name_AR" class="control-label"></label>
+                <input asp-for="Name_AR" class="form-control" />
+                <span asp-validation-for="Name_AR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" cols="10" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description_AR" class="control-label"></label>
+                <textarea asp-for="Description_AR" cols="10" class="form-control"></textarea>
+                <span asp-validation-for="Description_AR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Serial_Number" class="control-label"></label>
+                <input asp-for="Serial_Number" class="form-control" />
+                <span asp-validation-for="Serial_Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" type="number" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OldPrice" class="control-label"></label>
+                <input asp-for="OldPrice" type="number" class="form-control" />
+                <span asp-validation-for="OldPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Category</label>
+                <select id="Category" onclick="GetSubCategories();" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubCategory_Id" class="control-label"></label>
+                <span id="subCatMessage" style="display:none;color:blue">Loading .....</span>
+                <select asp-for="SubCategory_Id" class="form-control">
+                    <option value="@Model.SubCategory_Id" selected>@Model.SubCategoryName</option>
+                </select>
+                <span asp-validation-for="SubCategory_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand_Id" class="control-label"></label>
+                <select asp-for="Brand_Id" asp-items="@(new SelectList(ViewBag.Brands, "Id", "Name", Model.Brand_Id))" class="form-control"></select>
+                <span asp-validation-for="Brand_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Market_Id" class="control-label"></label>
+                <select asp-for="Market_Id" asp-items="@(new SelectList(ViewBag.Markets, "Id", "Name", Model.Brand_Id))" class="form-control"></select>
+                <span asp-validation-for="Market_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Offer_Id" class="control-label"></label>
+                <select asp-for="Offer_Id" asp-items="@(new SelectList(ViewBag.Offers, "Id", "Name"))" class="form-control"></select>
+                <span asp-validation-for="Offer_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label name="Photos" class="control-label">Photos</label>
+                <input name="Photos" type="file" multiple class="form-control" />
+                <span name="Photos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+        <h2>Edit Product Images</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="tbl">
+                @foreach (var path in Model.Images)
+                {
+                    <tr>
+                        <td>
+                            <img asp-append-version="true" src="@path" alt="@Model.Name" width="200" height="200" />
+                        </td>
+                        <td><a class="btn btn-danger" asp-action="DeleteImage" asp-controller="Products" asp-route-path="@path" asp-route-productId="@Model.Id"> Delete Image</a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<script>
+        function GetSubCategories() {
+        $("#SubCategory_Id").html("")
+            $("#subCatMessage").css("display", "block")
+
+            $.post("@Url.Action("SubCategoriesUsingCatId", "SubCategories")", {
+
+                catId: $("#Category").val()
+            },
+                function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        $("#SubCategory_Id").append("<option value=" + data[i].id + ">" + data[i].name + "</option>")
+                    }
+                    $("#subCatMessage").css("display", "none")
+        }
+
+          )
+    }
+
+</script>
+
