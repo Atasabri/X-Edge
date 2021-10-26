@@ -10,7 +10,7 @@ using Xedge.Domain.Context;
 namespace Xedge.Domain.Migrations
 {
     [DbContext(typeof(DB))]
-    [Migration("20210709125734_Init")]
+    [Migration("20211026184001_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,29 +50,29 @@ namespace Xedge.Domain.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ad751b12-9955-446f-965b-a4ab240fd004",
-                            ConcurrencyStamp = "2db1be28-4417-474b-bfdd-3939b708bab7",
+                            Id = "200ae2bc-ac61-4d0a-b0f6-acceb44f1898",
+                            ConcurrencyStamp = "5859391f-5236-4218-a3d6-b8f5362dfdc4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "3505485e-87de-45ef-b9ad-5c49a0628ec5",
-                            ConcurrencyStamp = "153c18a6-9d3b-45ab-be2f-65f027c87109",
+                            Id = "60930647-1cfa-4765-aa9b-62960467c4e0",
+                            ConcurrencyStamp = "8e2c0b0f-30c2-43aa-abb1-a5bf92475b74",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "f9947dbd-f50e-4471-83bd-285de4f65907",
-                            ConcurrencyStamp = "d3e14757-a95d-458c-8273-41c6d7f775b9",
+                            Id = "72fae469-bc34-4389-9883-60035f488057",
+                            ConcurrencyStamp = "7465a4cb-d0ca-4925-87bb-c2e7f960263d",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "a949109e-e7d1-402b-b9c7-27e0bce8aba5",
-                            ConcurrencyStamp = "4ed901b9-fec1-4aad-aafb-b603082be5b1",
+                            Id = "1a28f779-184c-4d0c-aaa6-9f6d83f47c29",
+                            ConcurrencyStamp = "f1126d9d-c58f-41eb-9b15-55f8e4d44e46",
                             Name = "Driver",
                             NormalizedName = "DRIVER"
                         });
@@ -165,8 +165,8 @@ namespace Xedge.Domain.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "36dc0191-fd5e-43e4-9e20-2f16b7137ac9",
-                            RoleId = "ad751b12-9955-446f-965b-a4ab240fd004"
+                            UserId = "8f513147-db34-4d34-894c-054f53403e09",
+                            RoleId = "200ae2bc-ac61-4d0a-b0f6-acceb44f1898"
                         });
                 });
 
@@ -464,6 +464,9 @@ namespace Xedge.Domain.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("Delivery")
+                        .HasColumnType("float");
+
                     b.Property<double>("Discount")
                         .HasColumnType("float");
 
@@ -508,9 +511,6 @@ namespace Xedge.Domain.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("SubTotal")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Taxs")
                         .HasColumnType("float");
 
                     b.Property<double>("Total")
@@ -735,8 +735,8 @@ namespace Xedge.Domain.Migrations
                         new
                         {
                             Id = 1,
-                            Key = "Tax",
-                            Name = "Tax",
+                            Key = "Delivery",
+                            Name = "Delivery",
                             Type = 14,
                             Value = "5"
                         },
@@ -847,6 +847,9 @@ namespace Xedge.Domain.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -915,17 +918,18 @@ namespace Xedge.Domain.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "36dc0191-fd5e-43e4-9e20-2f16b7137ac9",
+                            Id = "8f513147-db34-4d34-894c-054f53403e09",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bc4c93f2-e9e5-4d09-b653-15c28ab1d40b",
+                            Balance = 0.0,
+                            ConcurrencyStamp = "983fe328-80f1-41bf-8c50-deaf10a04510",
                             CurrentLangauge = 1,
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGZzaXVFp8G/kGiOVkou6bpRiW6gIR7dUtU3Av/CKjWgeajn/Vv2zLRqVJwLes/DCQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEDAsG6hhrhRkD+THKaCdVo32rrQGsiTbbezHHxh1QAQmNDEy+GiB2X5kBer4OUPAg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9f796897-a1ed-4104-a141-8ccd887ba7d6",
+                            SecurityStamp = "8b0d0d9b-893a-4ef7-bd14-fadb9867f41f",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -962,11 +966,17 @@ namespace Xedge.Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<double>("Money")
                         .HasColumnType("float");
+
+                    b.Property<int>("TransactionType")
+                        .HasColumnType("int");
 
                     b.Property<string>("User_Id")
                         .IsRequired()

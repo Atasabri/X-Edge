@@ -42,7 +42,8 @@ namespace Xedge.Domain.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FCM = table.Column<string>(nullable: true),
                     CurrentLangauge = table.Column<int>(nullable: false),
-                    FullName = table.Column<string>(nullable: true)
+                    FullName = table.Column<string>(nullable: true),
+                    Balance = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -370,7 +371,7 @@ namespace Xedge.Domain.Migrations
                     Closed = table.Column<bool>(nullable: false),
                     SubTotal = table.Column<double>(nullable: false),
                     Discount = table.Column<double>(nullable: false),
-                    Taxs = table.Column<double>(nullable: false),
+                    Delivery = table.Column<double>(nullable: false),
                     PaymentWay = table.Column<int>(nullable: false),
                     Total = table.Column<double>(nullable: false),
                     User_Id = table.Column<string>(nullable: false),
@@ -435,8 +436,10 @@ namespace Xedge.Domain.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     User_Id = table.Column<string>(nullable: false),
+                    TransactionType = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    Money = table.Column<double>(nullable: false)
+                    Money = table.Column<double>(nullable: false),
+                    Comment = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -671,16 +674,16 @@ namespace Xedge.Domain.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "ad751b12-9955-446f-965b-a4ab240fd004", "2db1be28-4417-474b-bfdd-3939b708bab7", "Admin", "ADMIN" },
-                    { "3505485e-87de-45ef-b9ad-5c49a0628ec5", "153c18a6-9d3b-45ab-be2f-65f027c87109", "Editor", "EDITOR" },
-                    { "f9947dbd-f50e-4471-83bd-285de4f65907", "d3e14757-a95d-458c-8273-41c6d7f775b9", "User", "USER" },
-                    { "a949109e-e7d1-402b-b9c7-27e0bce8aba5", "4ed901b9-fec1-4aad-aafb-b603082be5b1", "Driver", "DRIVER" }
+                    { "200ae2bc-ac61-4d0a-b0f6-acceb44f1898", "5859391f-5236-4218-a3d6-b8f5362dfdc4", "Admin", "ADMIN" },
+                    { "60930647-1cfa-4765-aa9b-62960467c4e0", "8e2c0b0f-30c2-43aa-abb1-a5bf92475b74", "Editor", "EDITOR" },
+                    { "72fae469-bc34-4389-9883-60035f488057", "7465a4cb-d0ca-4925-87bb-c2e7f960263d", "User", "USER" },
+                    { "1a28f779-184c-4d0c-aaa6-9f6d83f47c29", "f1126d9d-c58f-41eb-9b15-55f8e4d44e46", "Driver", "DRIVER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CurrentLangauge", "Email", "EmailConfirmed", "FCM", "FullName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "36dc0191-fd5e-43e4-9e20-2f16b7137ac9", 0, "bc4c93f2-e9e5-4d09-b653-15c28ab1d40b", 1, "admin@gmail.com", false, null, null, false, null, null, "ADMIN", "AQAAAAEAACcQAAAAEGZzaXVFp8G/kGiOVkou6bpRiW6gIR7dUtU3Av/CKjWgeajn/Vv2zLRqVJwLes/DCQ==", null, false, "9f796897-a1ed-4104-a141-8ccd887ba7d6", false, "admin" });
+                columns: new[] { "Id", "AccessFailedCount", "Balance", "ConcurrencyStamp", "CurrentLangauge", "Email", "EmailConfirmed", "FCM", "FullName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "8f513147-db34-4d34-894c-054f53403e09", 0, 0.0, "983fe328-80f1-41bf-8c50-deaf10a04510", 1, "admin@gmail.com", false, null, null, false, null, null, "ADMIN", "AQAAAAEAACcQAAAAEEDAsG6hhrhRkD+THKaCdVo32rrQGsiTbbezHHxh1QAQmNDEy+GiB2X5kBer4OUPAg==", null, false, "8b0d0d9b-893a-4ef7-bd14-fadb9867f41f", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Offers",
@@ -692,7 +695,7 @@ namespace Xedge.Domain.Migrations
                 columns: new[] { "Id", "Key", "Name", "Type", "Value" },
                 values: new object[,]
                 {
-                    { 1, "Tax", "Tax", 14, "5" },
+                    { 1, "Delivery", "Delivery", 14, "5" },
                     { 2, "VisaAvailable", "Visa Available", 3, "True" },
                     { 3, "LimitPriceForUseZeroWithCost", "Limit Price For Use Zero With Cost", 14, "300" }
                 });
@@ -700,7 +703,7 @@ namespace Xedge.Domain.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[] { "36dc0191-fd5e-43e4-9e20-2f16b7137ac9", "ad751b12-9955-446f-965b-a4ab240fd004" });
+                values: new object[] { "8f513147-db34-4d34-894c-054f53403e09", "200ae2bc-ac61-4d0a-b0f6-acceb44f1898" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_User_Id",

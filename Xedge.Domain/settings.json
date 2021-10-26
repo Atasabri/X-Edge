@@ -1,6 +1,6 @@
 {
   "ConnectionStrings": {
     "DB": "server=ATASABRI\\SQLEXPRESS;database=Xedge;integrated security=true"
-    //"DB": "server=sql5085.site4now.net;database=DB_A578C9_Xedge;user=DB_A578C9_Xedge_admin;password=Xedge123"
+    //"DB": "server=sql5104.site4now.net;database=DB_A578C9_Xedge;user=DB_A578C9_Xedge_admin;password=Xedge123"
   }
 }
