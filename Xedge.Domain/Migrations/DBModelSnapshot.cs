@@ -48,29 +48,29 @@ namespace Xedge.Domain.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bfdce41b-2900-4ecd-80b3-910bce7be38f",
-                            ConcurrencyStamp = "6c97916e-fca5-4f5f-af1b-740213b75457",
+                            Id = "200ae2bc-ac61-4d0a-b0f6-acceb44f1898",
+                            ConcurrencyStamp = "5859391f-5236-4218-a3d6-b8f5362dfdc4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ff511223-1557-4424-9faf-02badb998e69",
-                            ConcurrencyStamp = "60684e48-2d77-4cf3-a056-3ccf529216ce",
+                            Id = "60930647-1cfa-4765-aa9b-62960467c4e0",
+                            ConcurrencyStamp = "8e2c0b0f-30c2-43aa-abb1-a5bf92475b74",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "d9e36e92-0b53-40f2-8711-f0818905701d",
-                            ConcurrencyStamp = "456b25d9-7656-4248-afc4-3ead61d14c26",
+                            Id = "72fae469-bc34-4389-9883-60035f488057",
+                            ConcurrencyStamp = "7465a4cb-d0ca-4925-87bb-c2e7f960263d",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "a98d080c-d3e7-4e44-a143-c9d43a222b1a",
-                            ConcurrencyStamp = "44cd5daa-632e-4b8d-bb39-6c2adebc537c",
+                            Id = "1a28f779-184c-4d0c-aaa6-9f6d83f47c29",
+                            ConcurrencyStamp = "f1126d9d-c58f-41eb-9b15-55f8e4d44e46",
                             Name = "Driver",
                             NormalizedName = "DRIVER"
                         });
@@ -163,8 +163,8 @@ namespace Xedge.Domain.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "d1099681-4f94-49cc-98e4-09d502182730",
-                            RoleId = "bfdce41b-2900-4ecd-80b3-910bce7be38f"
+                            UserId = "8f513147-db34-4d34-894c-054f53403e09",
+                            RoleId = "200ae2bc-ac61-4d0a-b0f6-acceb44f1898"
                         });
                 });
 
@@ -462,6 +462,9 @@ namespace Xedge.Domain.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("Delivery")
+                        .HasColumnType("float");
+
                     b.Property<double>("Discount")
                         .HasColumnType("float");
 
@@ -506,9 +509,6 @@ namespace Xedge.Domain.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("SubTotal")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Taxs")
                         .HasColumnType("float");
 
                     b.Property<double>("Total")
@@ -733,8 +733,8 @@ namespace Xedge.Domain.Migrations
                         new
                         {
                             Id = 1,
-                            Key = "Tax",
-                            Name = "Tax",
+                            Key = "Delivery",
+                            Name = "Delivery",
                             Type = 14,
                             Value = "5"
                         },
@@ -916,18 +916,18 @@ namespace Xedge.Domain.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d1099681-4f94-49cc-98e4-09d502182730",
+                            Id = "8f513147-db34-4d34-894c-054f53403e09",
                             AccessFailedCount = 0,
                             Balance = 0.0,
-                            ConcurrencyStamp = "66b166e1-6f87-4025-8d5c-6e37e7d34c47",
+                            ConcurrencyStamp = "983fe328-80f1-41bf-8c50-deaf10a04510",
                             CurrentLangauge = 1,
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBVnR1hTfzCLCR1gYaKNEP+OIMl4Vhl3WhuBJGQpKtSZrl/QuZ1rqh3KAKhQ9XG1yg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEDAsG6hhrhRkD+THKaCdVo32rrQGsiTbbezHHxh1QAQmNDEy+GiB2X5kBer4OUPAg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "77d2d95d-55ed-4f10-a951-12c09ada90d8",
+                            SecurityStamp = "8b0d0d9b-893a-4ef7-bd14-fadb9867f41f",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });

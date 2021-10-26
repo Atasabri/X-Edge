@@ -16,7 +16,7 @@ namespace Xedge.Infrastructure.DashboardViewModels.Orders
         [Display(Name = "Sub Total")]
         public double SubTotal { get; set; }
         public double Discount { get; set; }
-        public double Taxs { get; set; }
+        public double Delivery { get; set; }
         [Display(Name = "Payment Way")]
         public PaymentWays PaymentWay { get; set; }
         public double Total { get; set; }

@@ -31,7 +31,7 @@ namespace Xedge.Business.Services.Wallet.Implementation
         public async Task<CreateState> AddDepositTransactionAsync(AddTransactionDTO addTransactionDTO)
         {
             var createState = new CreateState();
-            var user = await _unitOfWork.UsersRepository.GetCurrentUser();
+            var user = await _unitOfWork.CurrentUserRepository.GetCurrentUser();
             var walletTransaction = _mapper.Map<AddTransactionDTO, Domain.Models.WalletTransaction>(addTransactionDTO);
             walletTransaction.User_Id = user.Id;
             walletTransaction.TransactionType = TransactionTypes.Deposit;
@@ -52,7 +52,7 @@ namespace Xedge.Business.Services.Wallet.Implementation
 
         public async Task<double> GetBalanceAsync()
         {
-            var user = await _unitOfWork.UsersRepository.GetCurrentUser();
+            var user = await _unitOfWork.CurrentUserRepository.GetCurrentUser();
             var balance = user.Balance;
 
             return balance;
@@ -61,7 +61,7 @@ namespace Xedge.Business.Services.Wallet.Implementation
         public async Task<CreateState> AddPullTransactionAsync(AddTransactionDTO addTransactionDTO)
         {
             var createState = new CreateState();
-            var user = await _unitOfWork.UsersRepository.GetCurrentUser();
+            var user = await _unitOfWork.CurrentUserRepository.GetCurrentUser();
             var walletTransaction = _mapper.Map<AddTransactionDTO, Domain.Models.WalletTransaction>(addTransactionDTO);
             walletTransaction.User_Id = user.Id;
             walletTransaction.TransactionType = TransactionTypes.Pull;

@@ -74,7 +74,7 @@ namespace Xedge.Repo.UnitOfWork
         IAddressesRepository addressesRepository;
         IFavoritesRepository favoritesRepository;
         IPaymentMethodsRepository paymentMethodsRepository;
-        IUsersRepository usersRepository;
+        ICurrentUserRepository currentUserRepository;
         ISystemFilesRepository systemFilesRepository;
         ISettingsRepository settingsRepository;
         ISMSCodeRepository smsCodeRepository;
@@ -291,15 +291,15 @@ namespace Xedge.Repo.UnitOfWork
             }
         }
 
-        public IUsersRepository UsersRepository
+        public ICurrentUserRepository CurrentUserRepository
         {
             get
             {
-                if (usersRepository == null)
+                if (currentUserRepository == null)
                 {
-                    usersRepository = new UsersRepository(_accessor, _userManager);
+                    currentUserRepository = new CurrentUserRepository(_accessor, _userManager);
                 }
-                return usersRepository;
+                return currentUserRepository;
             }
         }
 
