@@ -85,14 +85,14 @@ namespace Xedge.Domain.Context
                 Name = Constants.XedgeOfferName,
                 Name_AR = Constants.XedgeOfferName_Ar
             });
-            // Adding Tax to App Settings
+            // Adding Delivery to App Settings
             builder.Entity<Settings>().HasData(new Settings()
             {
                 Id = 1,
-                Name = Constants.TaxKeyName,
-                Key = Constants.TaxKey,
-                Value = Constants.DefaultTaxValue.ToString(),
-                Type = Type.GetTypeCode(Constants.DefaultTaxValue.GetType())
+                Name = Constants.DeliveryKeyName,
+                Key = Constants.DeliveryKey,
+                Value = Constants.DefaultDeliveryValue.ToString(),
+                Type = Type.GetTypeCode(Constants.DefaultDeliveryValue.GetType())
             });
             // Adding Visa Available to App Settings
             builder.Entity<Settings>().HasData(new Settings()

@@ -118,12 +118,12 @@ namespace Xedge.Business.Services.Orders.Implementation
                 }
             }
 
-            // Get Taxs Value From DataBase and Assign to Order
+            // Get Delivery Value From DataBase and Assign to Order
             double taxs;
-            bool hasTaxs = double.TryParse(await _unitOfWork.SettingsRepository.GetSettingValueUsingKeyAsync(Constants.TaxKey), out taxs);
-            order.Taxs = hasTaxs ? taxs : Constants.DefaultTaxValue;
+            bool hasDelivery = double.TryParse(await _unitOfWork.SettingsRepository.GetSettingValueUsingKeyAsync(Constants.DeliveryKey), out taxs);
+            order.Delivery = hasDelivery ? taxs : Constants.DefaultDeliveryValue;
             // Calculate Final Order Total Price
-            order.Total = (order.SubTotal - order.Discount) + order.Taxs;
+            order.Total = (order.SubTotal - order.Discount) + order.Delivery;
 
             await _unitOfWork.OrdersRepository.CreateAsync(order);
 

@@ -510,7 +510,7 @@ namespace Xedge.Domain.Migrations
                     b.Property<double>("SubTotal")
                         .HasColumnType("float");
 
-                    b.Property<double>("Taxs")
+                    b.Property<double>("Delivery")
                         .HasColumnType("float");
 
                     b.Property<double>("Total")
@@ -735,8 +735,8 @@ namespace Xedge.Domain.Migrations
                         new
                         {
                             Id = 1,
-                            Key = "Tax",
-                            Name = "Tax",
+                            Key = "Delivery",
+                            Name = "Delivery",
                             Type = 14,
                             Value = "5"
                         },
