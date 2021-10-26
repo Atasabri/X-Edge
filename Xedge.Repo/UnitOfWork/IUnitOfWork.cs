@@ -66,7 +66,7 @@ namespace Xedge.Repo.UnitOfWork
         IAddressesRepository AddressesRepository { get; }
         IFavoritesRepository FavoritesRepository { get; }
         IPaymentMethodsRepository PaymentMethodsRepository { get; }
-        IUsersRepository UsersRepository { get; }
+        ICurrentUserRepository CurrentUserRepository { get; }
 
 
         // Files Repositories

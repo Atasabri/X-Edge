@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Xedge.Repo.Repositories.Interfaces.User
 {
-    public interface IUsersRepository
+    public interface ICurrentUserRepository
     {
         /// <summary>
         /// Get Cuurent User Id 
