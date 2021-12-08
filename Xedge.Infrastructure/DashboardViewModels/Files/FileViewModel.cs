@@ -11,5 +11,8 @@ namespace Xedge.Infrastructure.DashboardViewModels.Files
         [Display(Name = "Size")]
         public double SizeinMB { get; set; }
         public string Extention { get; set; }
+
+        [Display(Name = "Category")]
+        public int Category_Id { get; set; }
     }
 }

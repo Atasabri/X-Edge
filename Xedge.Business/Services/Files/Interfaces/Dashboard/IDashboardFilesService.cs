@@ -13,15 +13,15 @@ namespace Xedge.Business.Services.Files.Interfaces.Dashboard
         /// <summary>
         /// Adding New File Asynchronous
         /// </summary>
-        /// <param name="addVideoViewModel"></param>
+        /// <param name="addFileViewModel"></param>
         /// <returns></returns>
-        Task<CreateState> CreateFileAsync(AddFileViewModel addVideoViewModel);
+        Task<CreateState> CreateFileAsync(AddFileViewModel addFileViewModel);
         /// <summary>
         /// Edit File Asynchronous
         /// </summary>
-        /// <param name="editVideoViewModel"></param>
+        /// <param name="editFileViewModel"></param>
         /// <returns></returns>
-        Task<ActionState> EditFileAsync(EditFileViewModel editVideoViewModel);
+        Task<ActionState> EditFileAsync(EditFileViewModel editFileViewModel);
         /// <summary>
         /// Delete File Using Id Asynchronous
         /// </summary>

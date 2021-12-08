@@ -23,5 +23,17 @@ namespace Xedge.Web.Controllers.APIs
         {
             return Ok(await _filesService.GetFilesAsync(pagingParameters));
         }
+
+        [HttpGet("GetFilesUsingCategory/{catId}")]
+        public async Task<IActionResult> GetFilesUsingCategory([FromQuery] int catId, [FromQuery] PagingParameters pagingParameters)
+        {
+            return Ok(await _filesService.GetFilesUsingCategoryAsync(catId, pagingParameters));
+        }
+
+        [HttpGet("GetFilesCategories")]
+        public async Task<IActionResult> GetFilesCategories([FromQuery] PagingParameters pagingParameters)
+        {
+            return Ok(await _filesService.GetFilesCategoriesAsync(pagingParameters));
+        }
     }
 }
