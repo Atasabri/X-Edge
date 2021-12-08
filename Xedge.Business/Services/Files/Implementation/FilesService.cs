@@ -25,11 +25,31 @@ namespace Xedge.Business.Services.Files.Implementation
         }
         public async Task<PagedResult<FileDTO>> GetFilesAsync(PagingParameters pagingparameters)
         {
-            var files = await _unitOfWork.FilesRepository.GetElementsWithOrderAsync(news => true
+            var files = await _unitOfWork.FilesRepository.GetElementsWithOrderAsync(file => true
                               , pagingparameters
-                              , news => news.Id, OrderingType.Descending);
+                              , file => file.Id, OrderingType.Descending);
 
             var filesDTOs = files.ToMappedPagedResult<File, FileDTO>(_mapper);
+            return filesDTOs;
+        }
+
+        public async Task<PagedResult<FileDTO>> GetFilesUsingCategoryAsync(int catId, PagingParameters pagingparameters)
+        {
+            var files = await _unitOfWork.FilesRepository.GetElementsWithOrderAsync(file => file.Category_Id == catId
+                              , pagingparameters
+                              , file => file.Id, OrderingType.Descending);
+
+            var filesDTOs = files.ToMappedPagedResult<File, FileDTO>(_mapper);
+            return filesDTOs;
+        }
+
+        public async Task<PagedResult<FileCategoryDTO>> GetFilesCategoriesAsync(PagingParameters pagingparameters)
+        {
+            var files = await _unitOfWork.FilesCategoryRepository.GetElementsWithOrderAsync(category => true
+                              , pagingparameters
+                              , category => category.Id, OrderingType.Descending);
+
+            var filesDTOs = files.ToMappedPagedResult<FileCategory, FileCategoryDTO>(_mapper);
             return filesDTOs;
         }
     }

@@ -6,99 +6,93 @@ using System.Threading.Tasks;
 using Xedge.Business.Services.Files.Interfaces.Dashboard;
 using Xedge.Infrastructure.BaseService;
 using Xedge.Infrastructure.DashboardViewModels.Files;
+using Xedge.Infrastructure.DashboardViewModels.Files_Category.Files;
 using Xedge.Infrastructure.Pagination;
 
 namespace Xedge.Web.Controllers.Dashboard
 {
-    public class FilesController : DashboardController
+    public class FilesCategoryController : DashboardController
     {
-        private readonly IDashboardFilesService _dashboardFilesService;
         private readonly IDashboardFilesCategoryService _dashboardFilesCategoryService;
 
-        public FilesController(IDashboardFilesService dashboardFilesService, IDashboardFilesCategoryService dashboardFilesCategoryService)
+        public FilesCategoryController(IDashboardFilesCategoryService dashboardFilesCategoryService)
         {
-            this._dashboardFilesService = dashboardFilesService;
             this._dashboardFilesCategoryService = dashboardFilesCategoryService;
         }
-        // GET: Files
+        // GET: FilesCategory
         public async Task<ActionResult> Index(PagingParameters pagingParameters)
         {
-            var result = await _dashboardFilesService.GetDashboardFilesAsync(pagingParameters);
+            var result = await _dashboardFilesCategoryService.GetDashboardFilesCategoriesAsync(pagingParameters);
             return View(result);
         }
 
-        // GET: Files/Details/5
+        // GET: FilesCategory/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var result = await _dashboardFilesService.GetFileDetailsAsync(id);
+            var result = await _dashboardFilesCategoryService.GetFileCategoryDetailsAsync(id);
             return View(result);
         }
 
-        // GET: Files/Create
-        public async Task<ActionResult> Create()
+        // GET: FilesCategory/Create
+        public ActionResult Create()
         {
-            ViewBag.Categories = await _dashboardFilesCategoryService.GetAllDashboardFilesCategoriesAsync();
-
             return View();
         }
 
-        // POST: Files/Create
+        // POST: FilesCategory/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(AddFileViewModel addFileViewModel)
+        public async Task<ActionResult> Create(AddFileCategoryViewModel addFileCategoryViewModel)
         {
             if (ModelState.IsValid)
             {
-                var result = await _dashboardFilesService.CreateFileAsync(addFileViewModel);
+                var result = await _dashboardFilesCategoryService.CreateFileCategoryAsync(addFileCategoryViewModel);
                 if (result.CreatedSuccessfully)
                 {
                     return RedirectToAction(nameof(Index));
                 }
                 ModelState.AddModelError("", result.ErrorMessages.FirstOrDefault());
             }
-            ViewBag.Categories = await _dashboardFilesCategoryService.GetAllDashboardFilesCategoriesAsync();
-            return View(addFileViewModel);
+            return View(addFileCategoryViewModel);
         }
 
-        // GET: Files/Edit/5
+        // GET: FilesCategory/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var result = await _dashboardFilesService.GetFileDetailsAsync(id);
+            var result = await _dashboardFilesCategoryService.GetFileCategoryDetailsAsync(id);
             if (result == null)
             {
                 return NotFound();
             }
-            ViewBag.Categories = await _dashboardFilesCategoryService.GetAllDashboardFilesCategoriesAsync();
             return View(result);
         }
 
-        // POST: Files/Edit/5
+        // POST: FilesCategory/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(EditFileViewModel editFileViewModel)
+        public async Task<ActionResult> Edit(EditFileCategoryViewModel editFileCategoryViewModel)
         {
             if (ModelState.IsValid)
             {
-                var result = await _dashboardFilesService.EditFileAsync(editFileViewModel);
+                var result = await _dashboardFilesCategoryService.EditFileCategoryAsync(editFileCategoryViewModel);
                 if (result.ExcuteSuccessfully)
                 {
                     return RedirectToAction(nameof(Index));
                 }
                 ModelState.AddModelError("", result.ErrorMessages.FirstOrDefault());
             }
-            var FileViewModel = await _dashboardFilesService.GetFileDetailsAsync(editFileViewModel.Id);
-            ViewBag.Categories = await _dashboardFilesCategoryService.GetAllDashboardFilesCategoriesAsync();
+            var FileViewModel = await _dashboardFilesCategoryService.GetFileCategoryDetailsAsync(editFileCategoryViewModel.Id);
             return View(FileViewModel);
         }
 
 
-        // POST: Files/Delete/5
+        // POST: FilesCategory/Delete/5
         [HttpPost]
         public async Task<ActionResult> Delete(int id)
         {
             if (ModelState.IsValid)
             {
-                var result = await _dashboardFilesService.DeleteFileAsync(id);
+                var result = await _dashboardFilesCategoryService.DeleteFileCategoryAsync(id);
                 if (result.ExcuteSuccessfully)
                 {
                     return Json(id);
