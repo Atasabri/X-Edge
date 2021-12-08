@@ -78,11 +78,13 @@ namespace Xedge.Repo.UnitOfWork
         // Verification Repositories
         ISMSCodeRepository SMSCodeRepository { get; }
 
+        // Files Repositories
+        IFilesRepository FilesRepository { get; }
+        IFilesCategoryRepository FilesCategoryRepository { get; }
 
         INewsRepository NewsRepository { get; }
         INewsImagesRepository NewsImagesRepository { get; }
         IVideosRepository VideosRepository { get; }
-        IFilesRepository FilesRepository { get; }
         IWalletTransactionsRepository WalletTransactionsRepository { get; }
 
 

@@ -1,4 +1,4 @@
-﻿@model FileViewModel
+﻿@model FileCategoryViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -7,14 +7,12 @@
 
 <h1>Edit</h1>
 
-<h4>Edit File With Id : @Model.Id</h4>
+<h4>Edit File Category With Id : @Model.Id</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit" enctype="multipart/form-data">
             <input asp-for="Id" type="hidden" />
-            <input asp-for="Extention" type="hidden" />
-            <input asp-for="SizeinMB" type="hidden" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -25,16 +23,6 @@
                 <label asp-for="Name_AR" class="control-label"></label>
                 <input asp-for="Name_AR" class="form-control" />
                 <span asp-validation-for="Name_AR" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Category_Id" class="control-label"></label>
-                <select asp-for="Category_Id" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))" class="form-control"></select>
-                <span asp-validation-for="Category_Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label name="File" class="control-label">File</label>
-                <input name="File" type="file" class="form-control" />
-                <span name="File" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

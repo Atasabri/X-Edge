@@ -83,6 +83,7 @@ namespace Xedge.Repo.UnitOfWork
         INewsRepository  newsRepository;
         INewsImagesRepository newsImagesRepository;
         IFilesRepository filesRepository;
+        IFilesCategoryRepository filesCategoryRepository;
         IVideosRepository videosRepository;
         IWalletTransactionsRepository walletTransactionsRepository;
 
@@ -372,6 +373,18 @@ namespace Xedge.Repo.UnitOfWork
                     filesRepository = new FilesRepository(_context);
                 }
                 return filesRepository;
+            }
+        }
+
+        public IFilesCategoryRepository FilesCategoryRepository
+        {
+            get
+            {
+                if (filesCategoryRepository == null)
+                {
+                    filesCategoryRepository = new FilesCategoryRepository(_context);
+                }
+                return filesCategoryRepository;
             }
         }
 

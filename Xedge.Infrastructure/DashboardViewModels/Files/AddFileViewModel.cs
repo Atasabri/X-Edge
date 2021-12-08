@@ -11,5 +11,8 @@ namespace Xedge.Infrastructure.DashboardViewModels.Files
     {
         [Required]
         public IFormFile File { get; set; }
+
+        [Display(Name = "Category")]
+        public int Category_Id { get; set; }
     }
 }

@@ -262,6 +262,7 @@ namespace Xedge.Web
             services.AddTransient<IDashboardNewsService, DashboardNewsService>();
             services.AddTransient<IDashboardVideosService, DashboardVideosService>();
             services.AddTransient<IDashboardFilesService, DashboardFilesService>();
+            services.AddTransient<IDashboardFilesCategoryService, DashboardFilesCategoryService>();
 
             services.AddTransient<AuthenticationHandler>();
             services.AddTransient<NotificationHandler>();
