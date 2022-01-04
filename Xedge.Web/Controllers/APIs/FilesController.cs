@@ -25,7 +25,7 @@ namespace Xedge.Web.Controllers.APIs
         }
 
         [HttpGet("GetFilesUsingCategory/{catId}")]
-        public async Task<IActionResult> GetFilesUsingCategory([FromQuery] int catId, [FromQuery] PagingParameters pagingParameters)
+        public async Task<IActionResult> GetFilesUsingCategory(int catId, [FromQuery] PagingParameters pagingParameters)
         {
             return Ok(await _filesService.GetFilesUsingCategoryAsync(catId, pagingParameters));
         }
